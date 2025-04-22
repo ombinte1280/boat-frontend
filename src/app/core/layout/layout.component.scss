@@ -1,0 +1,17 @@
+.layout-body {
+  min-height: calc(100vh - 128px);
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    flex: 1;
+    padding: 24px;
+    background-color: #fafafa;
+  }
+}
+
+.footer {
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+}

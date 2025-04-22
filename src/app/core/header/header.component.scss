@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: rosybrown;
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .user-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+  }
+
+  .user-info {
+    font-weight: 500;
+    color: #000;
+  }
+
+  button {
+    color: #000;
+    font-weight: 500;
+  }
+}
