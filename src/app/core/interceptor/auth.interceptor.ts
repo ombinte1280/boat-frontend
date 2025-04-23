@@ -25,8 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         // If user not authentified or resource not allowed redirection to login
         if (error.status === 401 || error.status === 403) {
-          localStorage.removeItem('token'); // Nettoie le token
-          this.router.navigate(['/login']); // Redirection
+          localStorage.removeItem('token');
+          localStorage.setItem('user', '');
+          this.router.navigate(['/login']);
         }
         return throwError(() => error);
       })

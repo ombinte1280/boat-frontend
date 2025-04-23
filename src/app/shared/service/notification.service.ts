@@ -10,14 +10,18 @@ export class NotificationService {
   showSuccess(message: string) {
     this.snackBar.open(message, 'OK', {
       duration: 3000,
-      panelClass: ['snackbar-success']
+      panelClass: ['snackbar-success'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 
   showError(message: string) {
     this.snackBar.open(message, 'Fermer', {
       duration: 5000,
-      panelClass: ['snackbar-error']
+      panelClass: ['snackbar-error'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 }

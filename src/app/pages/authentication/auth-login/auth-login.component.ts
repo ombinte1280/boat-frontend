@@ -6,6 +6,7 @@ import {LoginModel} from '../models/login.model';
 import {UserModel} from '../models/user.model';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth-login',
@@ -26,7 +27,7 @@ export class AuthLoginComponent {
   validationErrors:any = []
 
   constructor(private fb: FormBuilder, private authService: AuthenticationService
-    , private router: Router) {
+    , private router: Router, private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', Validators.required]
@@ -49,6 +50,10 @@ export class AuthLoginComponent {
         },
         error: err => {
           console.log('Login failed:', err);
+          this.snackBar.open('Identifiants incorrects', 'Fermer', {
+            duration: 4000,
+            panelClass: ['snackbar-error']
+          });
           this.validationErrors = err.response ? err.response.data.errors : err;
         }
       });
