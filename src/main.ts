@@ -2,7 +2,7 @@ import {bootstrapApplication} from '@angular/platform-browser';
 import {AppComponent} from './app/app.component';
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {APP_ROUTING} from './app/app.routes';
-import {AuthInterceptor} from './app/shared/interceptor/auth.interceptor';
+import {AuthInterceptor} from './app/core/interceptor/auth.interceptor';
 
 bootstrapApplication(AppComponent, {
   providers: [

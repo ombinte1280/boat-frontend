@@ -3,7 +3,7 @@ import {BoatService} from '../../services/boat.service';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {BoatModel} from '../models/boat.model';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CategoryItem, CategoryItemsSorted} from '../../../shared/models/category.item';
+import {CategoryItem, CategoryItemsSorted} from '../../../core/models/category.item';
 import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
