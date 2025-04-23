@@ -52,7 +52,9 @@ export class AuthLoginComponent {
           console.log('Login failed:', err);
           this.snackBar.open('Identifiants incorrects', 'Fermer', {
             duration: 4000,
-            panelClass: ['snackbar-error']
+            panelClass: ['snackbar-error'],
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
           });
           this.validationErrors = err.response ? err.response.data.errors : err;
         }
