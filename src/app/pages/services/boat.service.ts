@@ -42,8 +42,8 @@ export class BoatService {
     );
   }
 
-  patchBoat(request: BoatRequest): Observable<BoatModel> {
-    return this.http.patch<BoatModel>(this.boatBaseUrl, request).pipe(
+  patchBoat(id: string, request: BoatRequest): Observable<BoatModel> {
+    return this.http.patch<BoatModel>(this.boatBaseUrl + '/' + id, request).pipe(
       catchError(error => {
         console.error('/PATCH Boat API error', error);
         return throwError(() => error);

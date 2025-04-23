@@ -1,1 +1,21 @@
-<p>boat-detail works!</p>
+<h4>Détail du bateau</h4>
+<form [formGroup]="boatForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput id="name" type="text" placeholder="Nom" formControlName="name" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="dial-code">
+    <mat-label>Catégorie</mat-label>
+    <mat-select formControlName="category" required>
+      <mat-option *ngFor="let category of categories" [value]="category.code">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" class="submit-btn">
+    Sauvegarder
+  </button>
+  <button mat-button routerLink="/boat-list" class="profile">Annuler</button>
+</form>

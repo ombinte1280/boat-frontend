@@ -57,7 +57,7 @@ export class BoatListComponent implements OnInit {
   }
 
   editBoat(boat: BoatModel) {
-    this.router.navigate(['/boat-detail'], { state: { boat } });
+    this.router.navigate(['/boat-detail', boat.id]);
   }
 
   deleteBoat(boat: BoatModel) {

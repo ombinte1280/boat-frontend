@@ -11,7 +11,8 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'boat-list', pathMatch: 'full' },
       { path: 'boat-list', component: BoatListComponent },
-      { path: 'boat-detail', component: BoatDetailComponent }
+      { path: 'boat-detail', component: BoatDetailComponent },
+      { path: 'boat-detail/:id', component: BoatDetailComponent }
     ]
   },
   { path: 'login', component: AuthLoginComponent },
