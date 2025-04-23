@@ -1,1 +1,18 @@
-<p>auth-login works!</p>
+<div class="auth-container">
+  <h2>Se connecter</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput id="username" type="text" placeholder="Login" formControlName="username" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput id="password" type="password" placeholder="Mot de passe" formControlName="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="submit-btn">
+      Connexion
+    </button>
+  </form>
+</div>
