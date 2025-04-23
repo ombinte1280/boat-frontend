@@ -101,4 +101,8 @@ export class BoatListComponent implements OnInit {
       next: boats => this.boats = boats
     });
   }
+
+  viewBoat(boat: BoatModel): void {
+    this.router.navigate(['/boat-detail', boat.id], { state: { viewMode: true } });
+  }
 }

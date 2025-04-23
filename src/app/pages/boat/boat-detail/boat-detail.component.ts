@@ -8,7 +8,7 @@ import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {BoatRequest} from '../models/request/boat-request';
-import {DatePipe, NgForOf} from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 
 
 @Component({
@@ -24,7 +24,8 @@ import {DatePipe, NgForOf} from '@angular/common';
     MatOption,
     RouterLink,
     NgForOf,
-    DatePipe
+    DatePipe,
+    NgIf
   ],
   templateUrl: './boat-detail.component.html',
   styleUrl: './boat-detail.component.scss',
@@ -35,7 +36,8 @@ export class BoatDetailComponent implements OnInit{
   boat: BoatModel | undefined;
   boatForm: FormGroup;
   categories: CategoryItem[] = CategoryItemsSorted;
-  validationErrors:any = []
+  validationErrors:any = [];
+  isViewMode = false;
 
   constructor(private fb: FormBuilder, private boatService: BoatService, private router: Router
     , private route: ActivatedRoute) {
@@ -52,8 +54,16 @@ export class BoatDetailComponent implements OnInit{
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
+      this.isViewMode = history.state?.viewMode === true;
+
       if (id) {
         this.boatService.getBoat(id).subscribe(boat => {
+
+          // Mode to check boat détails
+          if (this.isViewMode) {
+            this.boatForm.disable();
+          }
+
           this.boat = boat;
           this.boatForm.patchValue({
             name: boat.name,
