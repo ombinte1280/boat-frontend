@@ -13,6 +13,10 @@ import {
 } from '@angular/material/table';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
+import {DatePipe} from '@angular/common';
+import {CategoryNamePipe} from '../../../shared/pipe/category-name.pipe';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {NotificationService} from '../../../shared/service/notification.service';
 
 
 @Component({
@@ -30,7 +34,9 @@ import {MatIcon} from '@angular/material/icon';
     MatRowDef,
     MatIconButton,
     MatIcon,
-    MatButton
+    MatButton,
+    DatePipe,
+    CategoryNamePipe
   ],
   templateUrl: './boat-list.component.html',
   styleUrl: './boat-list.component.scss',
@@ -39,9 +45,10 @@ import {MatIcon} from '@angular/material/icon';
 export class BoatListComponent implements OnInit {
 
   boats: BoatModel[] = [];
-  displayedColumns: string[] = ['position', 'name', 'category', 'actions'];
+  displayedColumns: string[] = ['position', 'name', 'category', 'registration', 'creationDate', 'actions'];
 
-  constructor(private boatService: BoatService, private router: Router) {
+  constructor(private boatService: BoatService, private router: Router, private notificationService: NotificationService
+  , private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -61,12 +68,28 @@ export class BoatListComponent implements OnInit {
   }
 
   deleteBoat(boat: BoatModel) {
-    if (confirm(`Supprimer le bateau "${boat.name}" ?`)) {
+    const snackBarRef = this.snackBar.open(
+      `Supprimer le bateau "${boat.name}" ?`,
+      'Supprimer',
+      {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      }
+    );
+
+    snackBarRef.onAction().subscribe(() => {
       this.boatService.deleteBoat(boat.id).subscribe({
-        next: () => this.reloadList(),
-        error: err => console.error('Error when deleting', err)
+        next: () => {
+          this.notificationService.showSuccess(`Bateau "${boat.name}" supprimé`);
+          this.reloadList();
+        },
+        error: err => {
+          console.error('Error when deleting', err);
+          this.notificationService.showError('Erreur lors de la suppression');
+        }
       });
-    }
+    });
   }
 
   addBoat() {

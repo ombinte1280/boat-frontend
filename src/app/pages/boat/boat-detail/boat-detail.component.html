@@ -1,21 +1,46 @@
-<h4>Détail du bateau</h4>
-<form [formGroup]="boatForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nom</mat-label>
-    <input matInput id="name" type="text" placeholder="Nom" formControlName="name" required>
-  </mat-form-field>
+<div class="boat-container">
+  <h4>Détail du bateau</h4>
+  <form [formGroup]="boatForm" (ngSubmit)="onSubmit()" class="boat-form">
 
-  <mat-form-field appearance="outline" class="dial-code">
-    <mat-label>Catégorie</mat-label>
-    <mat-select formControlName="category" required>
-      <mat-option *ngFor="let category of categories" [value]="category.code">
-        {{ category.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Créé le</mat-label>
+        <input matInput [value]="boat?.creationDate | date:'dd.MM.yyyy'" disabled>
+      </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" class="submit-btn">
-    Sauvegarder
-  </button>
-  <button mat-button routerLink="/boat-list" class="profile">Annuler</button>
-</form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Immatriculation</mat-label>
+        <input matInput formControlName="registration" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Catégorie</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category.code">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
+      <button mat-button routerLink="/boat-list">Annuler</button>
+    </div>
+
+  </form>
+</div>

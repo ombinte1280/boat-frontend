@@ -8,7 +8,7 @@ import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {BoatRequest} from '../models/request/boat-request';
-import {NgForOf} from '@angular/common';
+import {DatePipe, NgForOf} from '@angular/common';
 
 
 @Component({
@@ -23,7 +23,8 @@ import {NgForOf} from '@angular/common';
     MatSelect,
     MatOption,
     RouterLink,
-    NgForOf
+    NgForOf,
+    DatePipe
   ],
   templateUrl: './boat-detail.component.html',
   styleUrl: './boat-detail.component.scss',
@@ -40,7 +41,10 @@ export class BoatDetailComponent implements OnInit{
     , private route: ActivatedRoute) {
     this.boatForm = this.fb.group({
       name: ['', [Validators.required]],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
+      registration: ['', Validators.required],
+      description: [''],
+      creationDate: ['']
     });
   }
 
@@ -53,7 +57,10 @@ export class BoatDetailComponent implements OnInit{
           this.boat = boat;
           this.boatForm.patchValue({
             name: boat.name,
-            category: boat.category
+            category: boat.category,
+            registration: boat.registration,
+            description: boat.description,
+            creationDate: boat.creationDate
           });
         });
       }
@@ -68,7 +75,9 @@ export class BoatDetailComponent implements OnInit{
 
       const request: BoatRequest = {
         name: formValues.name,
-        category: formValues.category
+        category: formValues.category,
+        registration: formValues.registration,
+        description: formValues.description
       }
 
       if (boatId) { // Edition of a boat
