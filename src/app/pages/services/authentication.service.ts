@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {LoginModel} from '../models/login.model';
+import {LoginModel} from '../authentication/models/login.model';
 import {catchError, Observable, throwError} from 'rxjs';
-import {UserModel} from '../models/user.model';
+import {UserModel} from '../authentication/models/user.model';
 
 @Injectable({
   providedIn: 'root'
