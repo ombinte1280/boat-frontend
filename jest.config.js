@@ -1,4 +1,11 @@
 module.exports = {
   preset: 'jest-preset-angular',
-  globalSetup: 'jest-preset-angular/global-setup',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.spec.json',
+      useESM: true
+    }
+  },
+  testEnvironment: 'jsdom',
 };
